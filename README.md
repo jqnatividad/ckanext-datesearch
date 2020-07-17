@@ -18,7 +18,7 @@ If you use the default ckan metadata, as extra field you may add two (or only on
 In case you use ckanext-scheming, then you need to add these two fields into your schema json file.
 
 
-The main part of the code is located at [plugin.py](/ckanext/relation/plugin.py) at `before_search`. There exist three conditions for the date range search:
+The main part of the code is located at [plugin.py](/ckanext/datesearch/plugin.py) at `before_search`. There exist three conditions for the date range search:
 * where both start and end date are given in the search field
 * where only the start date is given in the search field
 * where only the end date is given in the search field
@@ -93,9 +93,9 @@ To install ckanext-relation:
 
        . /usr/lib/ckan/default/bin/activate
 
-2. Install the ckanext-relation Python package into your virtual environment::
+2. Install the ckanext-datesearch Python package into your virtual environment::
 
-       pip install -e 'git+https://github.com/MandanaMoshref/ckanext-relation.git#egg=ckanext-datesearch'
+       pip install -e 'git+https://github.com/MandanaMoshref/ckanext-datesearch.git#egg=ckanext-datesearch'
 
 3. Add ``datesearch`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
