@@ -59,7 +59,7 @@ class DateSearchPlugin(plugins.SingletonPlugin):
             except ValueError:
                 return search_params
             # Adding 'Z' manually here is evil, but we do this in core too.
-            query = '(begin-collection_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-begin-collection_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (begin-collection_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
+            query = '(coverage_from_date:[ * TO {1}Z] -coverage_to_date:[* TO *]) OR (-coverage_from_date:[ * TO * ] -coverage_to_date:[ {0}Z TO *]) OR (coverage_from_date:[ * TO {1}Z] coverage_to_date:[{0}Z TO *])'
             query = query.format(begin.isoformat(), end.isoformat())
             search_params['fq'] = query
         
@@ -72,7 +72,7 @@ class DateSearchPlugin(plugins.SingletonPlugin):
             except ValueError:
                 return search_params
             # Adding 'Z' manually here is evil, but we do this in core too.
-            query = '(begin-collection_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-begin-collection_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (begin-collection_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
+            query = '(coverage_from_date:[ * TO {1}Z] -coverage_to_date:[* TO *]) OR (-coverage_from_date:[ * TO * ] -coverage_to_date:[ {0}Z TO *]) OR (coverage_from_date:[ * TO {1}Z] coverage_to_date:[{0}Z TO *])'
             query = query.format(begin.isoformat(), end.isoformat())
             search_params['fq'] = query
         
@@ -85,7 +85,7 @@ class DateSearchPlugin(plugins.SingletonPlugin):
             except ValueError:
                 return search_params
             # Adding 'Z' manually here is evil, but we do this in core too.
-            query = '(begin-collection_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-begin-collection_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (begin-collection_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
+            query = '(coverage_from_date:[ * TO {1}Z] -coverage_to_date:[* TO *]) OR (-coverage_from_date:[ * TO * ] -coverage_to_date:[ {0}Z TO *]) OR (coverage_from_date:[ * TO {1}Z] coverage_to_date:[{0}Z TO *])'
             query = query.format(begin.isoformat(), end.isoformat())
             search_params['fq'] = query
         return search_params
@@ -97,7 +97,7 @@ class DateSearchPlugin(plugins.SingletonPlugin):
         # Do not index the collection date fields if the date is null
         # This should be fixed in core in ckan/ckan#1701
         package_dict = json.loads(data_dict['data_dict'])
-        for field in ('begin-collection_date', 'end-collection_date',):
+        for field in ('coverage_from_date', 'extras_coverage_to_date',):
             for extra in package_dict.get('extras', []):
                 if extra['key'] == field and not extra['value']:
                     data_dict.pop(field, None)

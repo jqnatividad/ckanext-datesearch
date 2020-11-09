@@ -9,16 +9,16 @@ def get_default_slider_values():
     '''Returns the earliest collection date from package_search'''
 
     data_dict = {
-            'sort': 'begin-collection_date asc',
+            'sort': 'coverage_from_date asc',
             'rows': 1,
-            'q': 'begin-collection_date:[* TO *]',
+            'q': 'coverage_from_date:[* TO *]',
     }
     result = p.toolkit.get_action('package_search')({}, data_dict)['results']
 
     if len(result) == 1:
-        #date = filter(lambda x: x['key'] == 'begin-collection_date', result[0].get('extras', []))
+        #date = filter(lambda x: x['key'] == 'extras_coverage_from_date', result[0].get('extras', []))
         #begin = date[0]['value']
-        date = (result[0].get('begin-collection_date', []))
+        date = (result[0].get('coverage_from_date', []))
         begin = date
         
     else:
@@ -26,17 +26,17 @@ def get_default_slider_values():
 
     
     data_dict = {
-            'sort': 'end-collection_date desc',
+            'sort': 'coverage_to_date desc',
             'rows': 1,
-            'q': 'end-collection_date:[* TO *]',
+            'q': 'coverage_to_date:[* TO *]',
     }
     result = p.toolkit.get_action('package_search')({}, data_dict)['results']
-    #print(end_collection_date)
+    #print(coverage_to_date)
 
     if len(result) == 1:
-        #date = filter(lambda x: x['key'] == 'end-collection_date', result[0].get('extras', []))    
+        #date = filter(lambda x: x['key'] == 'extras_coverage_to_date', result[0].get('extras', []))    
         #end = date[0]['value']
-        date = (result[0].get('end-collection_date', []))
+        date = (result[0].get('coverage_to_date', []))
         end = date
     else:
         end = datetime.date.today().isoformat()

@@ -14,7 +14,7 @@ You may need to check you schema.xml to see that this line exists:
 <dynamicField name="extras_*" type="text" indexed="true" stored="true" multiValued="false"/>
 ```
 
-If you use the default ckan metadata, as extra field you may add two (or only one of them) attributes (key): "begin-collection_date" and "end-collection_date".
+If you use the default ckan metadata, as extra field you may add two (or only one of them) attributes (key): "coverage_from_date" and "coverage_to_date".
 In case you use ckanext-scheming, then you need to add these two fields into your schema json file.
 
 
@@ -51,7 +51,7 @@ Here is the complete code:
             except ValueError:
                 return search_params
             # Adding 'Z' manually here is evil, but we do this in core too.
-            query = '(begin-collection_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-begin-collection_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (begin-collection_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
+            query = '(coverage_from_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-coverage_from_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (coverage_from_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
             query = query.format(begin.isoformat(), end.isoformat())
             search_params['fq'] = query
         
@@ -64,7 +64,7 @@ Here is the complete code:
             except ValueError:
                 return search_params
             # Adding 'Z' manually here is evil, but we do this in core too.
-            query = '(begin-collection_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-begin-collection_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (begin-collection_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
+            query = '(coverage_from_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-coverage_from_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (coverage_from_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
             query = query.format(begin.isoformat(), end.isoformat())
             search_params['fq'] = query
         
@@ -77,7 +77,7 @@ Here is the complete code:
             except ValueError:
                 return search_params
             # Adding 'Z' manually here is evil, but we do this in core too.
-            query = '(begin-collection_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-begin-collection_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (begin-collection_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
+            query = '(coverage_from_date:[ * TO {1}Z] -end_collection_date:[* TO *]) OR (-coverage_from_date:[ * TO * ] -end_collection_date:[ {0}Z TO *]) OR (coverage_from_date:[ * TO {1}Z] end_collection_date:[{0}Z TO *])'
             query = query.format(begin.isoformat(), end.isoformat())
             search_params['fq'] = query
         return search_params
